@@ -1,46 +1,65 @@
-# 05 - Mapas e Fontes de Dados
+# 05 - Google Maps e Dados Geográficos
 
 ## Objetivo
 
-Definir os dados externos necessários para construir rotas baseadas em deslocamento real e não apenas em distância em linha reta.
+Definir as capacidades de mapas necessárias para exibir os 10 estabelecimentos e uma rota real de carro entre eles.
 
 ## Capacidades necessárias
 
-- geocodificação de endereços;
-- reverse geocoding quando houver coordenadas;
-- matriz de tempo e distância entre pontos;
-- rotas viárias;
-- estimativa de trânsito quando disponível;
-- atualização de tempos durante replanejamento.
+- exibir mapa interativo;
+- exibir markers dos estabelecimentos;
+- numerar markers de `1` a `10`;
+- geocodificar endereços quando necessário;
+- calcular rotas para modo de deslocamento de carro;
+- obter distância e duração;
+- obter geometria da rota;
+- desenhar polyline acompanhando as vias.
 
-## Providers
+## Google Maps
 
-A escolha do provider ainda não está fechada. Devem ser avaliadas alternativas como Google Maps Platform, HERE, Mapbox, OpenStreetMap/OSRM e outros serviços compatíveis com os requisitos do projeto.
+Para o MVP, a experiência visual desejada é baseada no Google Maps. A seleção exata das APIs/SDKs da Google Maps Platform deverá ser validada na fase técnica conforme plataforma cliente, preços e capacidades vigentes.
 
-## Critérios de escolha
-
-- qualidade das rotas no Brasil;
-- cobertura;
-- trânsito em tempo real ou previsto;
-- limites de uso;
-- custo por requisição;
-- SLA;
-- licenciamento e regras de armazenamento/cache;
-- capacidade de matriz origem-destino;
-- latência.
-
-## Estratégia
-
-O domínio do projeto não deverá depender diretamente de um provider específico. A arquitetura futura deverá permitir trocar implementações de geocoding, matrix e directions por adaptadores.
+A arquitetura deve separar três responsabilidades:
 
 ```mermaid
 flowchart LR
-    CORE[Routing Core] --> GEO[Geocoding Port]
-    CORE --> MATRIX[Travel Matrix Port]
-    CORE --> DIR[Directions Port]
-    GEO --> P1[Provider A]
-    MATRIX --> P1
-    DIR --> P1
-    GEO --> P2[Provider B]
-    MATRIX --> P2
+    GEO[Geocoding] --> DATA[Coordenadas]
+    DATA --> ROUTE[Driving Route]
+    ROUTE --> GEOM[Route Geometry]
+    GEOM --> MAP[Google Map]
+    DATA --> MARKERS[Markers 1..10]
+    MARKERS --> MAP
 ```
+
+## Polyline
+
+A polyline não será criada conectando latitude/longitude diretamente. Ela deverá utilizar a geometria do trajeto viário calculado pelo serviço de rotas.
+
+Isso permite representar corretamente:
+
+- curvas;
+- avenidas;
+- ruas de mão única;
+- retornos;
+- acessos;
+- demais características consideradas pelo mecanismo de rotas.
+
+## Dados de entrada
+
+Idealmente cada estabelecimento já terá latitude e longitude. Quando apenas o endereço estiver disponível, será necessária geocodificação.
+
+## Dados de saída do provider
+
+O contrato interno deverá normalizar pelo menos:
+
+- origem;
+- destino;
+- distância;
+- duração;
+- geometria/polyline;
+- identificação do provider;
+- horário do cálculo quando relevante.
+
+## Evolução
+
+Trânsito em tempo real, previsão por horário e providers alternativos podem ser avaliados posteriormente. O primeiro objetivo é produzir corretamente a rota de carro e sua representação no mapa.
