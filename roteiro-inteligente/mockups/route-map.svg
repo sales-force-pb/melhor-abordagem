@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900">
+  <defs><filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-opacity="0.12"/></filter></defs>
+  <rect width="1440" height="900" fill="#f4f7fb"/>
+  <rect x="0" y="0" width="285" height="900" fill="#ffffff"/>
+  <text x="30" y="52" fill="#0f172a" font-family="Arial" font-size="27" font-weight="700">Roteiro Inteligente</text>
+  <text x="30" y="86" fill="#64748b" font-family="Arial" font-size="14">10 estabelecimentos adicionados</text>
+  <g font-family="Arial" font-size="13">
+    <g fill="#0f172a"><text x="30" y="135">1</text><text x="56" y="135" font-weight="700">Mercado Boa Compra</text><text x="30" y="196">2</text><text x="56" y="196" font-weight="700">Farmácia Saúde</text><text x="30" y="257">3</text><text x="56" y="257" font-weight="700">Padaria São José</text><text x="30" y="318">4</text><text x="56" y="318" font-weight="700">Supermercado Preço Bom</text><text x="30" y="379">5</text><text x="56" y="379" font-weight="700">Loja XPTO</text><text x="30" y="440">6</text><text x="56" y="440" font-weight="700">Posto Avenida</text><text x="30" y="501">7</text><text x="56" y="501" font-weight="700">Casa &amp; Cia</text><text x="30" y="562">8</text><text x="56" y="562" font-weight="700">Açougue do Bairro</text><text x="30" y="623">9</text><text x="56" y="623" font-weight="700">Pet Shop Amigo</text><text x="23" y="684">10</text><text x="56" y="684" font-weight="700">Restaurante Sabor</text></g>
+    <g fill="#94a3b8" font-size="11"><text x="56" y="154">Recife/PE</text><text x="56" y="215">Recife/PE</text><text x="56" y="276">Recife/PE</text><text x="56" y="337">Recife/PE</text><text x="56" y="398">Recife/PE</text><text x="56" y="459">Recife/PE</text><text x="56" y="520">Recife/PE</text><text x="56" y="581">Recife/PE</text><text x="56" y="642">Recife/PE</text><text x="56" y="703">Recife/PE</text></g>
+  </g>
+  <rect x="30" y="760" width="225" height="56" rx="10" fill="#16a34a"/><text x="96" y="795" fill="#ffffff" font-family="Arial" font-size="17" font-weight="700">Calcular rota</text>
+  <rect x="310" y="25" width="760" height="850" rx="18" fill="#e7eef4" filter="url(#shadow)"/>
+  <path d="M330 120 C430 90 500 150 580 130 S720 80 790 125 S930 190 1045 155" fill="none" stroke="#cbd5e1" stroke-width="12"/>
+  <path d="M360 250 C470 210 530 295 635 270 S805 235 900 290 S980 370 1040 340" fill="none" stroke="#ffffff" stroke-width="16"/>
+  <path d="M350 420 C460 390 555 455 650 430 S840 390 1035 450" fill="none" stroke="#cbd5e1" stroke-width="12"/>
+  <path d="M390 610 C480 550 585 615 690 590 S865 560 1005 640" fill="none" stroke="#ffffff" stroke-width="16"/>
+  <path d="M360 190 L475 245 L565 165 L655 305 L760 205 L845 375 L960 285 L905 520 L760 610 L620 545 L500 700 L405 575 L360 190" fill="none" stroke="#2563eb" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <g font-family="Arial" font-size="16" font-weight="700" text-anchor="middle" dominant-baseline="middle">
+    <g fill="#2563eb" stroke="#ffffff" stroke-width="4"><circle cx="360" cy="190" r="20"/><circle cx="475" cy="245" r="20"/><circle cx="565" cy="165" r="20"/><circle cx="655" cy="305" r="20"/><circle cx="760" cy="205" r="20"/><circle cx="845" cy="375" r="20"/><circle cx="960" cy="285" r="20"/><circle cx="905" cy="520" r="20"/><circle cx="760" cy="610" r="20"/><circle cx="500" cy="700" r="20"/></g>
+    <g fill="#ffffff"><text x="360" y="190">1</text><text x="475" y="245">2</text><text x="565" y="165">3</text><text x="655" y="305">4</text><text x="760" y="205">5</text><text x="845" y="375">6</text><text x="960" y="285">7</text><text x="905" y="520">8</text><text x="760" y="610">9</text><text x="500" y="700">10</text></g>
+  </g>
+  <text x="640" y="470" fill="#64748b" font-family="Arial" font-size="38" font-weight="700" opacity="0.55">RECIFE</text>
+  <rect x="1100" y="25" width="310" height="850" rx="18" fill="#ffffff" filter="url(#shadow)"/>
+  <text x="1125" y="68" fill="#0f172a" font-family="Arial" font-size="22" font-weight="700">Resumo do Roteiro</text>
+  <g font-family="Arial"><rect x="1125" y="105" width="260" height="105" rx="12" fill="#f8fafc"/><text x="1145" y="137" fill="#64748b" font-size="13">Distância total</text><text x="1145" y="180" fill="#0f172a" font-size="30" font-weight="700">38,7 km</text><rect x="1125" y="230" width="260" height="105" rx="12" fill="#f8fafc"/><text x="1145" y="262" fill="#64748b" font-size="13">Tempo estimado</text><text x="1145" y="305" fill="#0f172a" font-size="30" font-weight="700">1h 32min</text></g>
+  <text x="1125" y="382" fill="#0f172a" font-family="Arial" font-size="18" font-weight="700">Ordem de visita</text>
+  <line x1="1142" y1="415" x2="1142" y2="690" stroke="#cbd5e1" stroke-width="3"/>
+  <g font-family="Arial" font-size="13"><g fill="#2563eb"><circle cx="1142" cy="430" r="14"/><circle cx="1142" cy="485" r="14"/><circle cx="1142" cy="540" r="14"/><circle cx="1142" cy="595" r="14"/><circle cx="1142" cy="650" r="14"/></g><g fill="#ffffff" text-anchor="middle"><text x="1142" y="435">1</text><text x="1142" y="490">2</text><text x="1142" y="545">3</text><text x="1142" y="600">4</text><text x="1142" y="655">5</text></g><g fill="#0f172a"><text x="1170" y="434" font-weight="700">Mercado Boa Compra</text><text x="1170" y="489" font-weight="700">Farmácia Saúde</text><text x="1170" y="544" font-weight="700">Padaria São José</text><text x="1170" y="599" font-weight="700">Supermercado</text><text x="1170" y="654" font-weight="700">Loja XPTO</text></g></g>
+  <rect x="1125" y="750" width="260" height="58" rx="10" fill="#16a34a"/><text x="1203" y="786" fill="#ffffff" font-family="Arial" font-size="17" font-weight="700">Iniciar rota</text>
+  <text x="315" y="893" fill="#64748b" font-family="Arial" font-size="13">Mockup ilustrativo — a linha representa a rota viária real, não uma ligação reta entre os pontos.</text>
+</svg>
