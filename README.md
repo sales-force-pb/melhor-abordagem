@@ -12,6 +12,10 @@ Identificação e enriquecimento de estabelecimentos a partir de foto da fachada
 
 ➡️ [Acessar documentação de Inteligência Comercial](inteligencia-comercial/README.md)
 
+#### Mockup
+
+![Mockup - Inteligência Comercial](inteligencia-comercial/assets/mockup.svg)
+
 ```mermaid
 flowchart LR
     A[Foto + Geolocalização]
@@ -27,22 +31,25 @@ flowchart LR
 
 ### 2. Roteiro Inteligente
 
-Planejamento diário da melhor sequência para uma pessoa visitar até 10 clientes, considerando deslocamento real, tempo, distância, janelas de atendimento, duração das visitas e restrições operacionais.
+Planejamento diário para visitar 10 estabelecimentos, calculando uma sequência eficiente e exibindo no Google Maps a rota real de carro, com os estabelecimentos destacados e numerados de 1 a 10.
 
 ➡️ [Acessar documentação de Roteiro Inteligente](roteiro-inteligente/README.md)
 
+#### Mockup
+
+![Mockup - Roteiro Inteligente](roteiro-inteligente/assets/mockup.svg)
+
 ```mermaid
 flowchart LR
-    A[10 clientes do dia]
-    B[Geocodificação]
-    C[Matriz de tempo e distância]
-    D[Regras e janelas]
-    E[Route Optimizer]
-    F[Roteiro diário]
+    A[10 estabelecimentos]
+    B[Coordenadas]
+    C[Melhor sequência]
+    D[Rota de carro]
+    E[Polyline viária]
+    F[Google Maps]
     A --> B
     B --> C
-    A --> D
-    C --> E
+    C --> D
     D --> E
     E --> F
 ```
@@ -69,10 +76,14 @@ melhor-abordagem/
 ├── README.md
 ├── inteligencia-comercial/
 │   ├── README.md
+│   ├── assets/
+│   │   └── mockup.svg
 │   └── docs/
 │       └── ADR/
 └── roteiro-inteligente/
     ├── README.md
+    ├── assets/
+    │   └── mockup.svg
     └── docs/
 ```
 
