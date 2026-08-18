@@ -2,57 +2,53 @@
 
 ## Objetivo
 
-Gerar diariamente um itinerário otimizado para uma pessoa responsável por visitar até 10 clientes.
+Receber diariamente 10 estabelecimentos, definir uma ordem eficiente para visitá-los de carro e exibir o roteiro em um mapa do Google.
 
 ## Entradas mínimas
 
-- pessoa responsável;
-- ponto inicial do dia;
-- lista de clientes;
-- endereço ou coordenadas de cada cliente;
-- duração estimada da visita;
-- horário de início e fim da jornada.
+- lista de 10 estabelecimentos;
+- identificador do estabelecimento;
+- nome do estabelecimento;
+- endereço e/ou latitude/longitude;
+- ponto inicial da rota quando disponível.
 
-## Entradas desejáveis
+## Saída esperada
 
-- janela de atendimento do cliente;
-- prioridade;
-- horário preferencial;
-- tempo de serviço específico;
-- restrições de acesso;
-- compromisso fixo;
-- ponto final da jornada;
-- condição de trânsito prevista.
-
-## Saída
-
-O sistema deve produzir uma sequência ordenada de visitas com previsão de chegada, tempo de deslocamento, duração estimada e indicadores consolidados.
+- ordem de visita de `1` a `10`;
+- mapa contendo os estabelecimentos destacados;
+- marcador numerado para cada estabelecimento;
+- rota viária de carro entre as paradas;
+- polyline acompanhando ruas e avenidas;
+- distância por trecho;
+- tempo estimado por trecho;
+- distância total;
+- tempo estimado total.
 
 ```mermaid
 flowchart TB
-    I[10 clientes + agenda + ponto inicial]
-    N[Normalização]
-    M[Matriz de viagem]
-    C[Restrições]
-    O[Otimização]
-    R[Roteiro diário]
-    I --> N
-    N --> M
-    I --> C
-    M --> O
-    C --> O
-    O --> R
+    I[10 estabelecimentos]
+    G[Coordenadas]
+    O[Ordenação]
+    D[Driving Route]
+    P[Polyline viária]
+    M[Google Maps]
+
+    I --> G
+    G --> O
+    O --> D
+    D --> P
+    P --> M
+    I --> M
 ```
 
 ## Critérios de sucesso
 
-- aumentar a probabilidade de concluir todas as visitas;
-- reduzir tempo improdutivo em deslocamento;
-- reduzir distância total;
-- respeitar compromissos e horários;
-- explicar quando uma rota não é viável;
-- permitir recalcular o restante do roteiro quando o dia mudar.
+- todos os 10 estabelecimentos aparecem corretamente no mapa;
+- a ordem de visita é claramente identificável;
+- a linha segue o caminho viário real e não liga os pontos em linha reta;
+- distância e duração são apresentadas de forma compreensível;
+- a solução permite abrir o roteiro diariamente para o responsável pela visita.
 
-## Evolução
+## Evoluções futuras
 
-No futuro, o roteiro poderá utilizar inteligência comercial para priorizar visitas não apenas por logística, mas também por valor potencial e contexto do cliente.
+Futuramente poderão ser adicionadas janelas de atendimento, prioridades, trânsito, replanejamento, múltiplos responsáveis e integração com inteligência comercial. Esses recursos não fazem parte do escopo inicial.
