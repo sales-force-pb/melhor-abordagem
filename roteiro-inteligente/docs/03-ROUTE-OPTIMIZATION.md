@@ -1,77 +1,65 @@
-# 03 - Modelo de Otimização de Rota
+# 03 - Otimização e Rota Viária
 
-## Problema
+## Problema inicial
 
-O caso se aproxima de um **Vehicle Routing Problem com Time Windows (VRPTW)** simplificado para uma pessoa/veículo e até 10 clientes por dia.
+Dado um conjunto de 10 estabelecimentos e um ponto de partida, precisamos determinar uma sequência eficiente de visita e depois obter o caminho real de carro entre esses pontos.
 
-Não basta resolver o caminho geometricamente menor. O custo real depende do deslocamento viário e das restrições de atendimento.
+O MVP não considera inicialmente janelas de atendimento, prioridades comerciais ou duração da visita. Portanto, o problema inicial é significativamente mais simples que um VRPTW completo.
 
-## Variáveis relevantes
+## Duas etapas diferentes
 
-- ponto de origem;
-- ponto final opcional;
-- clientes a visitar;
-- matriz de tempos;
-- matriz de distâncias;
-- duração de cada visita;
-- janela de atendimento;
-- prioridade;
-- horário da jornada;
-- compromissos fixos.
-
-## Função objetivo conceitual
-
-A otimização será multiobjetivo, priorizando restrições duras antes de preferências.
+### 1. Ordenação
+Determinar a sequência de visita:
 
 ```text
-minimize:
-  travel_time
-  + distance_weight * distance
-  + lateness_penalty * lateness
-  + idle_penalty * waiting_time
-  + missed_visit_penalty * missed_visits
+Origem -> Cliente 4 -> Cliente 1 -> Cliente 8 -> ... -> Cliente 6
 ```
 
-Os pesos definitivos deverão ser calibrados por negócio.
+O objetivo inicial é reduzir o custo de deslocamento, preferencialmente considerando tempo viário e/ou distância viária.
 
-## Restrições duras e flexíveis
+### 2. Rota viária
+Com a ordem definida, solicitar ao provider de rotas o trajeto de carro entre as paradas.
 
-### Duras
-Não podem ser violadas sem declarar rota inviável.
-
-Exemplos: jornada máxima e cliente disponível somente em intervalo obrigatório.
-
-### Flexíveis
-Podem ser violadas mediante penalidade.
-
-Exemplos: preferência por manhã ou prioridade relativa entre clientes.
-
-## Matriz de deslocamento
-
-Para 10 clientes, mais origem e eventual destino, o otimizador trabalha sobre custos entre pares de pontos.
+O resultado deve representar ruas, avenidas, retornos e demais vias realmente utilizadas pelo veículo.
 
 ```mermaid
 flowchart LR
-    P[11 ou 12 pontos]
-    M[Travel Time Matrix]
-    O[Optimizer]
-    S[Best feasible sequence]
-    P --> M
-    M --> O
-    O --> S
+    P[10 pontos]
+    O[Calcular ordem]
+    W[Waypoints ordenados]
+    D[Driving route]
+    G[Geometria da rota]
+    PL[Polyline no mapa]
+
+    P --> O
+    O --> W
+    W --> D
+    D --> G
+    G --> PL
 ```
 
-## Algoritmo
+## Linha reta versus rota real
 
-A tecnologia definitiva ainda não está escolhida. Devem ser avaliadas abordagens de otimização combinatória apropriadas ao VRP/VRPTW. Com apenas 10 visitas, também é possível comparar soluções exatas ou quase exatas com heurísticas e medir qualidade versus tempo de cálculo.
+Não devemos desenhar uma linha diretamente entre as coordenadas dos estabelecimentos. Essa linha ignoraria a malha viária.
 
-## Explicabilidade
+A polyline exibida no mapa deverá ser derivada de uma rota para modo de deslocamento de carro.
 
-O resultado deve explicar pelo menos:
-- distância estimada;
-- tempo estimado de deslocamento;
-- tempo de atendimento;
-- espera prevista;
-- atrasos;
-- visitas não encaixadas;
-- restrições que influenciaram a ordem.
+## Resultado esperado
+
+Para cada trecho:
+
+```json
+{
+  "from": "cliente-01",
+  "to": "cliente-02",
+  "distanceMeters": 3200,
+  "durationSeconds": 480,
+  "routeGeometry": "provider-specific-encoded-polyline"
+}
+```
+
+A representação exata da geometria dependerá da API escolhida.
+
+## Evolução
+
+Se o produto posteriormente incorporar horários, duração de visitas, prioridades ou múltiplos responsáveis, o modelo de otimização deverá evoluir. Isso não é requisito do primeiro MVP.
