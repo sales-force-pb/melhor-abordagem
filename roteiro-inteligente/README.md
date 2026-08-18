@@ -2,100 +2,81 @@
 
 ## Visão
 
-O **Roteiro Inteligente** é a iniciativa responsável por organizar automaticamente a sequência diária de visitas de uma pessoa de campo a um conjunto de clientes.
+O **Roteiro Inteligente** recebe diariamente uma lista de **10 estabelecimentos** que devem ser visitados por uma pessoa responsável, calcula uma sequência eficiente de visita e apresenta o roteiro visualmente em um **mapa do Google**, destacando cada estabelecimento e desenhando o caminho real de carro pelas ruas.
 
-O cenário inicial considera **10 clientes por dia**. O objetivo não é apenas encontrar a menor distância geométrica, mas gerar a melhor sequência de visitas considerando tempo, trânsito, janelas de atendimento, prioridade comercial e restrições operacionais.
+O foco inicial é simples: transformar 10 pontos comerciais em uma rota viária clara, visual e executável.
 
-## Problema
+## Experiência esperada
 
-Uma lista de 10 clientes pode ser visitada em muitas ordens diferentes. A sequência escolhida afeta:
+O mapa deve apresentar simultaneamente:
 
-- quilômetros percorridos;
-- tempo total em trânsito;
-- horário de chegada;
-- atrasos;
-- custo operacional;
-- possibilidade de concluir todas as visitas;
-- qualidade do atendimento.
+- os 10 estabelecimentos destacados;
+- marcadores numerados de `1` a `10` conforme a ordem da visita;
+- nome do estabelecimento ao interagir com o marcador;
+- rota real de carro acompanhando ruas e avenidas;
+- distância total;
+- tempo estimado total;
+- distância e tempo entre estabelecimentos.
 
-A otimização deverá transformar uma lista sem ordem em um itinerário executável.
+A linha da rota **não é uma ligação reta entre coordenadas**. Ela representa a geometria retornada pelo serviço de rotas para o modo de deslocamento de carro e é desenhada como uma polyline sobre o mapa.
 
-## Fluxo inicial
+## Fluxo do MVP
 
 ```mermaid
 flowchart LR
-    A[Responsável recebe 10 clientes]
-    B[Normalização dos endereços]
-    C[Geocodificação]
-    D[Matriz de tempo e distância]
-    E[Restrições de cada visita]
-    F[Route Optimizer]
-    G[Roteiro Ordenado]
-    H[Navegação / Execução]
+    A[Receber 10 estabelecimentos]
+    B[Validar endereço ou coordenadas]
+    C[Resolver coordenadas]
+    D[Calcular ordem de visita]
+    E[Solicitar rota de carro]
+    F[Geometria viária / Polyline]
+    G[Google Maps]
+    H[Markers 1 a 10]
 
     A --> B
     B --> C
     C --> D
-    A --> E
-    D --> F
+    D --> E
     E --> F
     F --> G
-    G --> H
+    A --> H
+    H --> G
 ```
 
-## O que significa "melhor rota"
-
-No MVP, a função objetivo deverá priorizar:
-
-1. cumprir todas as visitas possíveis;
-2. respeitar janelas obrigatórias de atendimento;
-3. minimizar tempo total de deslocamento;
-4. minimizar distância percorrida;
-5. reduzir atrasos e períodos ociosos.
-
-Posteriormente poderão entrar critérios comerciais como prioridade do cliente, oportunidade, SLA, probabilidade de conversão e valor esperado da visita.
-
-## Exemplo
-
-Entrada:
+## Exemplo conceitual
 
 ```text
-Cliente A
-Cliente B
-Cliente C
-Cliente D
-Cliente E
-Cliente F
-Cliente G
-Cliente H
-Cliente I
-Cliente J
+Início
+  ↓ 4,2 km / 9 min
+[1] Mercado Boa Compra
+  ↓ 1,8 km / 5 min
+[2] Padaria São José
+  ↓ 3,1 km / 8 min
+[3] Farmácia Central
+  ↓ ...
+[10] Restaurante Avenida
 ```
 
-Saída:
+No mapa, a linha deverá seguir as vias utilizadas por um veículo entre cada parada.
 
-```text
-08:00  Saída
-08:20  Cliente F
-09:05  Cliente C
-09:50  Cliente A
-10:40  Cliente H
-...
-16:30  Cliente D
-```
+## Escopo inicial
 
-A ordem final pode ser completamente diferente da ordem recebida.
+Nesta primeira versão não estamos tentando resolver agenda complexa, prioridade comercial, janelas de atendimento ou replanejamento durante o dia. Esses recursos permanecem como possibilidades futuras.
+
+O MVP é:
+
+**10 estabelecimentos -> melhor sequência -> rota de carro -> Google Maps -> estabelecimentos destacados.**
 
 ## Documentação
 
 - [01 - Visão e Requisitos](docs/01-VISION.md)
 - [02 - Arquitetura Conceitual](docs/02-ARCHITECTURE.md)
-- [03 - Modelo de Otimização](docs/03-ROUTE-OPTIMIZATION.md)
+- [03 - Otimização e Rota Viária](docs/03-ROUTE-OPTIMIZATION.md)
 - [04 - Modelo de Domínio](docs/04-DOMAIN-MODEL.md)
-- [05 - Fontes e Serviços de Mapas](docs/05-MAPS-AND-DATA-SOURCES.md)
-- [06 - Regras e Restrições](docs/06-CONSTRAINTS.md)
+- [05 - Google Maps e Dados Geográficos](docs/05-MAPS-AND-DATA-SOURCES.md)
+- [06 - Regras do MVP](docs/06-CONSTRAINTS.md)
 - [07 - MVP](docs/07-MVP.md)
 
 ## Status
 
-Fase exclusivamente documental. Ainda não existem implementação, integrações ou algoritmo definitivo escolhidos.
+Fase exclusivamente documental. Ainda não existem implementação ou integrações executáveis.
