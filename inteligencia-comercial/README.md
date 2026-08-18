@@ -6,7 +6,7 @@ Esta pasta concentra toda a documentação da iniciativa de **Inteligência Come
 
 O mockup abaixo representa a experiência proposta para consulta de análises, dossiê do estabelecimento e evidências. É ilustrativo e não define a interface final.
 
-![Mockup - Inteligência Comercial](mockups/dashboard.svg)
+![Mockup - Inteligência Comercial](assets/mockup.svg)
 
 ## Fluxo principal
 
