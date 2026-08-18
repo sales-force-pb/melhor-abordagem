@@ -1,55 +1,50 @@
-# 06 - Regras e Restrições
+# 06 - Regras do MVP
 
 ## Objetivo
 
-Catalogar as restrições que podem alterar a ordem ótima das visitas.
+Registrar somente as regras necessárias para a primeira versão do Roteiro Inteligente.
 
-## Restrições duras
+## Regras
 
-Devem ser atendidas obrigatoriamente ou a rota deve ser marcada como inviável/parcial.
+1. O roteiro recebe 10 estabelecimentos.
+2. Cada estabelecimento precisa possuir endereço válido e/ou latitude/longitude.
+3. Deve existir uma ordem de visita de `1` a `10`.
+4. A rota deve considerar deslocamento de carro.
+5. O caminho exibido deve seguir a malha viária.
+6. Cada estabelecimento deve ser destacado no mapa.
+7. Os markers devem refletir a ordem calculada.
+8. Devem ser apresentados distância e tempo estimados.
+9. Uma coordenada inválida ou endereço não resolvido deve ser explicitamente informado; o sistema não deve posicionar silenciosamente um cliente no local errado.
 
-- horário de início e fim da jornada;
-- cliente disponível somente em uma janela obrigatória;
-- compromisso com horário fixo;
-- visita que exige duração mínima;
-- ponto inicial conhecido;
-- visita cancelada ou indisponível.
+## Fora do escopo inicial
 
-## Restrições flexíveis
+- janela de atendimento;
+- duração de visita;
+- prioridade comercial;
+- SLA;
+- horário fixo;
+- replanejamento automático;
+- múltiplos responsáveis;
+- acompanhamento GPS;
+- navegação turn-by-turn própria.
 
-Podem ser violadas mediante penalidade.
-
-- cliente prefere manhã ou tarde;
-- cliente com prioridade comercial maior;
-- evitar horário de pico em determinada região;
-- reduzir retorno à mesma região;
-- minimizar tempo ocioso;
-- preferência por finalizar próximo a determinado ponto.
-
-## Prioridade comercial
-
-No primeiro MVP a prioridade será um parâmetro simples. Em versões futuras ela poderá vir de inteligência comercial, SLA, oportunidade, risco de churn ou valor potencial.
-
-## Duração da visita
-
-Cada visita deve possuir tempo estimado de atendimento. Sem isso, uma rota aparentemente possível pode ultrapassar a jornada.
-
-## Rota inviável
-
-O otimizador não deve esconder conflitos. Quando todas as 10 visitas não couberem na jornada, o resultado deverá indicar:
-
-- visitas encaixadas;
-- visitas não encaixadas;
-- restrições responsáveis;
-- sugestão de menor mudança necessária quando possível.
+## Regra visual fundamental
 
 ```mermaid
-flowchart TD
-    A[10 visitas] --> B[Aplicar restrições duras]
-    B --> C{Todas cabem?}
-    C -- Sim --> D[Otimizar preferências]
-    C -- Não --> E[Maximizar visitas viáveis]
-    E --> F[Explicar exclusões/conflitos]
-    D --> G[Roteiro final]
-    F --> G
+flowchart LR
+    A[Coordenada A] --> R[Serviço de rota de carro]
+    B[Coordenada B] --> R
+    R --> G[Geometria viária]
+    G --> P[Polyline]
 ```
+
+Não utilizar `A -> B` como uma linha geométrica reta para representar deslocamento.
+
+## Falhas mínimas
+
+O planejamento deve informar quando:
+
+- endereço não puder ser geocodificado;
+- coordenada estiver ausente ou inválida;
+- rota de carro não puder ser calculada;
+- um estabelecimento não puder ser incluído no roteiro.
