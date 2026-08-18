@@ -10,7 +10,7 @@ O foco inicial é simples: transformar 10 pontos comerciais em uma rota viária 
 
 O mockup abaixo representa a experiência proposta para a lista de estabelecimentos, o mapa com os 10 markers numerados, a rota viária e o resumo de distância e tempo. É ilustrativo e não define a interface final.
 
-![Mockup - Roteiro Inteligente](mockups/route-map.svg)
+![Mockup - Roteiro Inteligente](assets/mockup.svg)
 
 ## Experiência esperada
 
