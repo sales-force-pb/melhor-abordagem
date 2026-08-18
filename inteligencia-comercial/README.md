@@ -2,6 +2,12 @@
 
 Esta pasta concentra toda a documentação da iniciativa de **Inteligência Comercial**: identificação e enriquecimento de estabelecimentos a partir de foto da fachada e geolocalização, análise de mercado, concorrência, presença digital, evidências e consolidação de inteligência.
 
+## Mockup
+
+O mockup abaixo representa a experiência proposta para consulta de análises, dossiê do estabelecimento e evidências. É ilustrativo e não define a interface final.
+
+![Mockup - Inteligência Comercial](mockups/dashboard.svg)
+
 ## Fluxo principal
 
 ```mermaid
